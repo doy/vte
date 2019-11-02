@@ -227,6 +227,7 @@ impl Parser {
                     self.params(),
                     self.intermediates(),
                     self.ignoring,
+                    byte as char
                 );
             },
             Action::Put => performer.put(byte),
@@ -378,7 +379,7 @@ pub trait Perform {
     ///
     /// The `ignore` flag indicates that more than two intermediates arrived and
     /// subsequent characters were ignored.
-    fn hook(&mut self, params: &[i64], intermediates: &[u8], ignore: bool);
+    fn hook(&mut self, params: &[i64], intermediates: &[u8], ignore: bool, char);
 
     /// Pass bytes as part of a device control string to the handle chosen in `hook`. C0 controls
     /// will also be passed to the handler.
